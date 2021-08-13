@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+    fever-database:
+        image: postgres:13-alpine
+        container_name: fever-database
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=temperature
+        volumes:
+            - /home/pi/backup/PostgreSQLVolume:/var/lib/postgresql/data
+        expose:
+            - "5432"
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+
+    fever-api:
+        container_name: fever-api
+        build: Dockerfile
+        restart: always
+        ports:
+            - "8080:8080"
+        depends_on:
+            - fever-database
