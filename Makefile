@@ -1,5 +1,5 @@
 measure:
-	./gradlew build -Dquarkus.package.type=native
+	./gradlew build
 	docker-compose up -d
 
 up@dev:

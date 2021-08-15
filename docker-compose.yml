@@ -21,7 +21,7 @@ services:
 
     fever-api:
         container_name: fever-api
-        build: Dockerfile
+        build: .
         restart: always
         expose:
             - "8080"
