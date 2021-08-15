@@ -20,7 +20,6 @@ class TemperatureResource {
     fun create(): Temperature = service.create()
 
     @GET
-    @Status(Response.Status.CREATED)
     fun list(@Form params: PeriodParams): List<Temperature> = service.list(Period(params))
 
 }
